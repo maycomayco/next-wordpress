@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -24,4 +24,168 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} */
+
+:root {
+  --accent: 0, 191, 123;
+  --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(36 204 255) 30%, white 60%);
+}
+
+html {
+  font-family: system-ui, sans-serif;
+  background-color: #F6F6F6;
+}
+
+code {
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+p {
+  font-size: 19px;
+  line-height: 33px;
+  color: #202020;
+}
+
+figure {
+  margin: 0 0 1rem;
+}
+
+figure img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0px 14px 15px -1px rgb(0 0 0 / 25%);
+}
+
+main {
+  margin: auto;
+  padding: 1.5rem;
+  max-width: 75ch;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0;
+  text-align: center;
+}
+
+.text-gradient {
+  background-image: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400%;
+  background-position: 0%;
+}
+
+.instructions {
+  line-height: 1.6;
+  margin: 1rem 0;
+  border: 1px solid rgba(var(--accent), 25%);
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  text-align: center;
+}
+
+.instructions code {
+  font-size: 0.875em;
+  font-weight: bold;
+  background: rgba(var(--accent), 12%);
+  color: rgb(var(--accent));
+  border-radius: 4px;
+  padding: 0.3em 0.45em;
+}
+
+.instructions strong {
+  color: rgb(var(--accent));
+}
+
+.link-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+  gap: 1rem;
+  padding: 0;
+}
+
+article {
+  margin: auto;
+  padding: 1.5rem;
+  max-width: 75ch;
+  color: #333333;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #202020;
+  font-weight: 800;
+  text-align: center;
+  margin: 0;
+}
+
+.return {
+  margin: 50px auto 0;
+  text-decoration: none;
+  width: 192px;
+  height: 40px;
+  border: 2px solid #d4d4d4;
+  color: #838383;
+  border-radius: 8px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.return:hover {
+  border-color: #b0abab;
+  color: #6a6a6a;
+  transition: all 0.2s ease-in-out;
+}
+
+.link-card {
+  list-style: none;
+  display: flex;
+  padding: 0.25rem;
+  background-color: white;
+  background-image: none;
+  background-size: 400%;
+  border-radius: 0.6rem;
+  background-position: 100%;
+  transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.link-card>a {
+  width: 100%;
+  text-decoration: none;
+  line-height: 1.4;
+  padding: 1rem 1.3rem;
+  border-radius: 0.35rem;
+  color: #111;
+  background-color: white;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+p {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  color: #444;
+}
+
+.link-card:is(:hover, :focus-within) {
+  background-position: 0;
+  background-image: var(--accent-gradient);
+}
+
+.link-card:is(:hover, :focus-within) h2 {
+  color: rgb(var(--accent));
 }
