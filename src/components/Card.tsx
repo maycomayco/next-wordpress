@@ -20,7 +20,7 @@ export default function Card({
     <li className="link-card">
       <Link href={`${isContentful ? "/contentful/" : "/posts/"}${slug}`}>
         <figure>
-          <Image
+          <img
             src={`${isContentful ? `https://` : ""}${imageUrl}`}
             alt={title}
             width={300}

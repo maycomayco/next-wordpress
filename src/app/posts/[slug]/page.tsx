@@ -40,7 +40,6 @@ export default async function page({ params }: Props) {
 
   return (
     <>
-      {slug}
       <Post
         imageSrc={post._embedded?.["wp:featuredmedia"]["0"].source_url}
         title={post.title.rendered}
