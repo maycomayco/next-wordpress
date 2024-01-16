@@ -21,8 +21,9 @@ export default function Post({
         <Image
           src={`${isContentful ? `https:` : ""}${imageSrc}`}
           alt={title}
-          width={702}
-          height={351}
+          width={600}
+          height={400}
+          quality={90}
         />
       </figure>
       <h1 dangerouslySetInnerHTML={sanitizedHTML(title)}></h1>
