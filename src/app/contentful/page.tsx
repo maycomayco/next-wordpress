@@ -7,7 +7,7 @@ export default async function page() {
   return (
     <div>
       <ul role="list" className="link-card-grid">
-        {posts.map((post) => (
+        {posts.map((post: any) => (
           <Card
             key={post.sys.id}
             title={post.fields.title as string}
