@@ -18,9 +18,18 @@ export async function generateMetadata({ params: { slug } }: Props) {
   }
 
   return {
-    title: post.title.rendered,
+    title: `${post.fields.title} | Headless CMS Demo App`,
     description: post.excerpt.rendered,
   };
+}
+
+// Return a list of `params` to populate the [slug] dynamic segment
+export async function generateStaticParams() {
+  const posts = await getPosts();
+
+  return posts.map((post: any) => ({
+    slug: post.slug,
+  }));
 }
 
 export default async function page({ params }: Props) {
@@ -42,13 +51,4 @@ export default async function page({ params }: Props) {
       </Link>
     </>
   );
-}
-
-// Return a list of `params` to populate the [slug] dynamic segment
-export async function generateStaticParams() {
-  const posts = await getPosts();
-
-  return posts.map((post: any) => ({
-    slug: post.slug,
-  }));
 }
