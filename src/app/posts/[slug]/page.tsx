@@ -18,7 +18,7 @@ export async function generateMetadata({ params: { slug } }: Props) {
   }
 
   return {
-    title: `${post.fields.title} | Headless CMS Demo App`,
+    title: `${post.title.rendered} | Headless CMS Demo App`,
     description: post.excerpt.rendered,
   };
 }
