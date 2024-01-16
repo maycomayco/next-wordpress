@@ -19,7 +19,7 @@ export default function Post({
     <article>
       <figure>
         <Image
-          src={`${isContentful ? `https://` : ""}${imageSrc}`}
+          src={`${isContentful ? `https:` : ""}${imageSrc}`}
           alt={title}
           width={702}
           height={351}

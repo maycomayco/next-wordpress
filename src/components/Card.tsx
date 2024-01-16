@@ -21,7 +21,7 @@ export default function Card({
       <Link href={`${isContentful ? "/contentful/" : "/posts/"}${slug}`}>
         <figure>
           <img
-            src={`${isContentful ? `https://` : ""}${imageUrl}`}
+            src={`${isContentful ? `https:` : ""}${imageUrl}`}
             alt={title}
             width={300}
             height={200}
