@@ -1,44 +1,54 @@
-import Image from "next/image";
+import Post from "@/components/Post";
+import { getPostBySlug, getPosts } from "@/lib/actions/wordpress.actions";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 type Props = {
-    params: { slug: string }
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params: { slug } }: Props) {
+  const post = await getPostBySlug(slug);
+
+  // esta sera la metada para la pagina notFound
+  if (!post) {
+    return {
+      title: "Post not found",
+    };
+  }
+
+  return {
+    title: post.title.rendered,
+    description: post.excerpt.rendered,
+  };
+}
+
+export default async function page({ params }: Props) {
+  const { slug } = params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) return notFound();
+
+  return (
+    <>
+      {slug}
+      <Post
+        imageSrc={post._embedded?.["wp:featuredmedia"]["0"].source_url}
+        title={post.title.rendered}
+        content={post.content.rendered}
+      />
+      <Link href="/" className="return">
+        Go to Homepage &rarr;
+      </Link>
+    </>
+  );
 }
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
-    const posts = await fetch('https://ceropixel.com.ar/astro-demo/wp-json/wp/v2/posts?_embed').then((res) => res.json())
+  const posts = await getPosts();
 
-    if (!posts) return [] // short circuit
-
-    // @ts-ignore
-    return posts.map((post) => ({
-        slug: post.slug,
-    }))
-}
-
-export default async function page({ params }: Props) {
-    const { slug } = params
-    const res = await fetch(`https://ceropixel.com.ar/astro-demo/wp-json/wp/v2/posts?slug=${slug}&_embed`)
-    const listOfPosts = await res.json();
-    const post = listOfPosts[0]
-
-    if (!res.ok || !post) {
-        return null;
-    }
-
-    const sanitizedHTML = (content: string) => ({ __html: content || '' });
-
-    return (
-        <>
-            <article>
-                <figure>
-                    <Image src={post._embedded?.['wp:featuredmedia']['0'].source_url} alt={post.title?.rendered} width={702} height={351} />
-                </figure>
-                <h1 dangerouslySetInnerHTML={sanitizedHTML(post.title?.rendered)}></h1>
-                <p dangerouslySetInnerHTML={sanitizedHTML(post.content?.rendered)}></p>
-            </article>
-            <Link href="/" className="return">Go to Homepage &rarr;</Link>
-        </>
-    )
+  return posts.map((post: any) => ({
+    slug: post.slug,
+  }));
 }
