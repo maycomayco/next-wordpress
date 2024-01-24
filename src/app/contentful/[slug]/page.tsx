@@ -1,4 +1,6 @@
+import BackButton from "@/components/BackButton";
 import Post from "@/components/Post";
+import { Button } from "@/components/ui/button";
 import { getPostBySlug, getPosts } from "@/lib/actions/contentful.actions";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -48,9 +50,7 @@ export default async function page({ params }: Props) {
         content={post.fields?.content}
         isContentful
       />
-      <Link href="/contentful" className="return">
-        Go to Homepage &rarr;
-      </Link>
+      <BackButton pathname="/contentful" />
     </>
   );
 }

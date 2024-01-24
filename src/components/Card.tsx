@@ -17,19 +17,29 @@ export default function Card({
   isContentful,
 }: Props) {
   return (
-    <li className="link-card">
-      <Link href={`${isContentful ? "/contentful/" : "/posts/"}${slug}`}>
-        <figure>
-          <Image
-            src={`${isContentful ? `https:` : ""}${imageUrl}`}
-            alt={title}
-            width={300}
-            height={200}
-          />
-        </figure>
-        <h2 dangerouslySetInnerHTML={{ __html: title }} />
-        <p dangerouslySetInnerHTML={{ __html: excerpt }} />
+    // TODO: refactor this CSS
+    <div className="link-card">
+      <Link
+        className="p-6 flex flex-col gap-2"
+        href={`${isContentful ? "/contentful/" : "/wordpress/"}${slug}`}
+      >
+        {/* TODO: refactor the image to align to 3:2 aspect ratio */}
+        <Image
+          className="rounded-md shadow-lg"
+          src={`${isContentful ? `https:` : ""}${imageUrl}`}
+          alt={title}
+          width={600}
+          height={400}
+        />
+        <h2
+          className="text-xl font-semibold text-pretty"
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
+        <p
+          className="text-pretty"
+          dangerouslySetInnerHTML={{ __html: excerpt }}
+        />
       </Link>
-    </li>
+    </div>
   );
 }

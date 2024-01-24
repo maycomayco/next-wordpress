@@ -1,12 +1,15 @@
 import Card from "@/components/Card";
+import PreContent from "@/components/PreContent";
 import { getPosts } from "@/lib/actions/contentful.actions";
 
 export default async function page() {
   const posts = await getPosts();
 
   return (
-    <div>
-      <ul role="list" className="link-card-grid">
+    <>
+      <PreContent />
+
+      <div className="grid gap-4 grid-cols-2 max-sm:grid-cols-1">
         {posts.map((post: any) => (
           <Card
             key={post.sys.id}
@@ -17,7 +20,7 @@ export default async function page() {
             isContentful
           />
         ))}
-      </ul>
-    </div>
+      </div>
+    </>
   );
 }

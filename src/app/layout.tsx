@@ -17,12 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-[#f6f6f6] text-[#202020]">
       <body className={inter.className}>
-        <main>
-          <Header />
-          {children}
-        </main>
+        <Header />
+        <main className="mx-auto p-6 max-w-prose">{children}</main>
       </body>
     </html>
   );

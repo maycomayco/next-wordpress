@@ -1,33 +1,28 @@
-import Card from "@/components/Card";
-import { getPosts } from "@/lib/actions/wordpress.actions";
+import Link from "next/link";
 
 export default async function Home() {
-  const posts = await getPosts();
-
-  if (!posts)
-    return (
-      <div>
-        <p>There is no post to show...</p>
-      </div>
-    ); // short circuit
-
   return (
-    <>
-      <p className="instructions">
-        Click on any of the cards below to see the post content generated with
-        the amazing SSG ✌️
-      </p>
-      <ul role="list" className="link-card-grid">
-        {posts.map((post: any) => (
-          <Card
-            key={post.id}
-            title={post.title.rendered}
-            excerpt={post.excerpt.rendered}
-            imageUrl={post._embedded?.["wp:featuredmedia"]["0"].source_url}
-            slug={post.slug}
-          />
-        ))}
-      </ul>
-    </>
+    <div className="flex flex-col gap-8 mt-8">
+      <Link href="/wordpress">
+        <div className="bg-white rounded-md p-8 border">
+          <h1>
+            Next.js +{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-[rgb(36,204,255)]">
+              Wordpress
+            </span>
+          </h1>
+        </div>
+      </Link>
+      <Link href="/contentful">
+        <div className="bg-white rounded-md p-8 border">
+          <h1>
+            Next.js +{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-accent to-[rgb(36,204,255)]">
+              Contentful
+            </span>
+          </h1>
+        </div>
+      </Link>
+    </div>
   );
 }

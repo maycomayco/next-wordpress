@@ -1,3 +1,4 @@
+import BackButton from "@/components/BackButton";
 import Post from "@/components/Post";
 import { getPostBySlug, getPosts } from "@/lib/actions/wordpress.actions";
 import Link from "next/link";
@@ -45,9 +46,7 @@ export default async function page({ params }: Props) {
         title={post.title.rendered}
         content={post.content.rendered}
       />
-      <Link href="/" className="return">
-        Go to Homepage &rarr;
-      </Link>
+      <BackButton pathname="/wordpress" />
     </>
   );
 }
