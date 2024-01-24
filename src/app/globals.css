@@ -3,6 +3,23 @@
 @tailwind utilities;
 
 @layer base {
+  /* reset css */
+  * {
+    @apply box-border relative min-w-0;
+  }
+  body {
+    @apply min-h-dvh;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-balance;
+  }
+
+  /* custom styles for the app */
   h1 {
     @apply text-5xl font-extrabold m-0 text-center;
   }
@@ -12,7 +29,7 @@
   }
 
   p {
-    @apply leading-relaxed;
+    @apply leading-relaxed text-pretty;
   }
 }
 
