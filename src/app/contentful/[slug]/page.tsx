@@ -25,16 +25,16 @@ export async function generateMetadata({ params: { slug } }: Props) {
   };
 }
 
-export async function generateStaticParams() {
-  // obtengo todos los 'slugs' validos desde contentful
-  const posts = await getPosts();
+// export async function generateStaticParams() {
+//   // obtengo todos los 'slugs' validos desde contentful
+//   const posts = await getPosts();
 
-  const slugList = posts.map((post: any) => ({
-    slug: post.fields.slug,
-  }));
+//   const slugList = posts.map((post: any) => ({
+//     slug: post.fields.slug,
+//   }));
 
-  return slugList;
-}
+//   return slugList;
+// }
 
 export default async function page({ params }: Props) {
   const { slug } = params;

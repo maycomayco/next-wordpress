@@ -6,3 +6,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const sanitizedHTML = (content: string) => ({ __html: content || "" });
+
+// create sleep function
+export function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
